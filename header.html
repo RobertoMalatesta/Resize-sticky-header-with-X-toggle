@@ -1,16 +1,56 @@
 <header class="header">
-      <h1 class="logo">Web.org</h1>
-      <nav>
-        <div class="tog-nav bars">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div> <!-- end bars -->
-        <ul class="menu">
-          <li><a class="nav-link" href="">Home</a></li>
-          <li><a class="nav-link" href="">About</a></li>
-          <li><a class="nav-link" href="">Services</a></li>
-          <li><a class="nav-link" href="">Contact</a></li>
-        </ul>
-      </nav> <!-- end nav -->
-    </header> <!-- end header -->
+  <h1 class="logo">Web.org</h1>
+  <nav>
+    <div class="tog-nav bars">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div> <!-- end bars -->
+    <ul class="menu">
+      <li><a class="nav-link" href="">Home</a></li>
+      <li><a class="nav-link" href="">About</a></li>
+      <li><a class="nav-link" href="">Services</a></li>
+      <li><a class="nav-link" href="">Contact</a></li>
+    </ul>
+  </nav> <!-- end nav -->
+</header> <!-- end header -->
+<script>
+  const hder = document.querySelector('.header');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const logo = document.querySelector('.logo'); 
+  const togNav = document.querySelector('.tog-nav');
+  const menu = document.querySelector('.menu');
+  const topBar = document.querySelector('.bar:nth-of-type(3)');
+  const midBar = document.querySelector('.bar:nth-of-type(2)');
+  const lowBar = document.querySelector('.bar:nth-of-type(1)');
+     
+  function headShrink() {
+    let ypos = window.pageYOffset;
+    if(ypos > 1) {
+      hder.classList.add('shrink');
+      logo.classList.add('darken');
+      logo.style.top = '15px';
+      navLinks.forEach(link => link.classList.add('darken'));
+      togNav.style.top = '25px';
+      menu.style.top = '70px';
+    } else {
+      hder.classList.remove('shrink');
+      logo.classList.remove('darken');
+      logo.style.top = '30px';
+      menu.style.top = '100px';
+      navLinks.forEach(link => link.classList.remove('darken'));
+      togNav.style.top = '40px';
+    }
+  }
+     
+  function toggleNav() {
+    menu.classList.toggle('open');
+    // ANIMATE BARS
+    topBar.classList.toggle('rotate');
+    midBar.classList.toggle('hide');
+    lowBar.classList.toggle('rotate');
+  }
+      
+  window.addEventListener('scroll', headShrink);
+  togNav.addEventListener('click', toggleNav);
+</script>
